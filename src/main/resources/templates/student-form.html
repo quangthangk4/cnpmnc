@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${student.id == null ? 'Thêm Sinh Viên Mới' : 'Chỉnh Sửa Sinh Viên'}"></title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { padding: 5px; width: 300px; }
+    </style>
+</head>
+<body>
+<h1 th:text="${student.id == null ? 'Thêm Sinh Viên Mới' : 'Chỉnh Sửa Sinh Viên'}"></h1>
+
+<form th:action="@{${student.id == null ? '/students' : '/students/' + student.id}}"
+      th:object="${student}" method="POST">
+
+    <div class="form-group">
+        <label>Họ và Tên:</label>
+        <input type="text" th:field="*{name}" required />
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required />
+    </div>
+
+    <div class="form-group">
+        <label>Tuổi:</label>
+        <input type="number" th:field="*{age}" required />
+    </div>
+
+    <button type="submit" style="padding: 5px 15px;">Lưu</button>
+    <a th:href="@{/students}" style="margin-left: 10px;">Hủy</a>
+</form>
+</body>
+</html>

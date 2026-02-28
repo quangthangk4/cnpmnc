@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiết Sinh Viên</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .info { margin-bottom: 10px; }
+        .btn { padding: 5px 10px; text-decoration: none; border: 1px solid #ccc; background: #eee; color: #333; cursor: pointer; }
+        .btn-delete { background: #dc3545; color: white; border: none; }
+        form { display: inline; }
+    </style>
+</head>
+<body>
+<h1>Chi Tiết Sinh Viên</h1>
+<div class="info"><strong>ID:</strong> <span th:text="${student.id}"></span></div>
+<div class="info"><strong>Tên:</strong> <span th:text="${student.name}"></span></div>
+<div class="info"><strong>Email:</strong> <span th:text="${student.email}"></span></div>
+<div class="info"><strong>Tuổi:</strong> <span th:text="${student.age}"></span></div>
+
+<div style="margin-top: 20px;">
+    <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn">Chỉnh Sửa</a>
+
+    <form th:action="@{/students/delete/{id}(id=${student.id})}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sinh viên này?');">
+        <button type="submit" class="btn btn-delete">Xóa</button>
+    </form>
+
+    <a th:href="@{/students}" class="btn" style="margin-left: 10px;">Quay Lại Danh Sách</a>
+</div>
+</body>
+</html>
