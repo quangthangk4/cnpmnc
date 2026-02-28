@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: cnpmnc
+      POSTGRES_USER: postgresql
+      POSTGRES_PASSWORD: postgresql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgresql -d cnpmnc"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: student-management-app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cnpmnc
+      - SPRING_DATASOURCE_USERNAME=postgresql
+      - SPRING_DATASOURCE_PASSWORD=postgresql
+    restart: always
