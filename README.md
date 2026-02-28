@@ -63,7 +63,17 @@ khi code Java đọc dữ liệu lên?
 • Tại sao mỗi lần tắt ứng dụng và chạy lại, dữ liệu cũ trong Database lại bị mất hết?
 - trả lời: `application.properties đang sử dụng cấu hình spring.jpa.hibernate.ddl-auto=create do đó mỗi lần chạy lại ứng dụng hibernate sẽ được drop bảng cũ và tạo lại -> khắc phục: sử dụng update hoặc none`
 ## 5. Screenshot cho các module (Lab 4)
-*(Nội dung đang cập nhật...)*
+![img.png](image/list-student.png)
+![img.png](image/add-student.png)
+![img.png](image/detail-student.png)
+![img.png](image/edit-student.png)
+![img.png](image/delete-student.png)
+
+`application.properties:`
+![img.png](image/application.png)
+
+`env: `
+![img.png](image/env.png)
 
 ---
 *Dự án được phát triển dựa trên Spring Boot 4.0.2, PostgreSQL và Thymeleaf.*
